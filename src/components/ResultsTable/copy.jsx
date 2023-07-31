@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-
-import UserInput from "./components/UserInput/UserInput";
-import ResultsTable from "./components/ResultsTable/ResultsTable";
+import { useState } from "react";
 import Header from "./components/Header/Header";
-import "./App.css";
+import ResultsTable from "./components/ResultsTable/ResultsTable";
+import UserInput from "./components/UserInput/UserInput";
 
 function App() {
   const [userInput, setUserInput] = useState(null);
@@ -33,23 +31,21 @@ function App() {
   }
 
   return (
-    <>
-      <div>
-        <Header />
+    <div>
+      <Header />
 
-        <UserInput onCalculate={calculateHandler} />
+      <UserInput onCalculate={calculateHandler} />
 
-        {!userInput && (
-          <p style={{ textAlign: "center" }}>No investment Calculated</p>
-        )}
-        {userInput && (
-          <ResultsTable
-            data={yearlyData}
-            initialInvestment={userInput["current-savings"]}
-          />
-        )}
-      </div>
-    </>
+      {!userInput && (
+        <p style={{ textAlign: "center" }}>No investment calculated yet.</p>
+      )}
+      {userInput && (
+        <ResultsTable
+          data={yearlyData}
+          initialInvestment={userInput["current-savings"]}
+        />
+      )}
+    </div>
   );
 }
 
